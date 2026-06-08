@@ -245,9 +245,8 @@ def count_documents_in_collection(collection) -> int:
         return 0
 
 
-st.title("Local LLM With Adaptive Web Search")
-st.write("Upload a document to query it. Ask anything with web search enabled — if your question relates to the document, search is enhanced. If not, search uses your query as-is.")
-
+st.title("LocalMind - Adaptive Local LLM Assistant")
+st.write("Localmind is a local, privacy-first AI assistant. It runs entirely on your hardware. Query uploaded documents locally, tap into live web intelligence with API-free search, or use it as a completely secure, offline brainstorming partner—all powered by local LLMs.")
 # Sidebar config
 st.sidebar.title("Configuration")
 default_system_prompt = (
