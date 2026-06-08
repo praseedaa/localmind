@@ -126,7 +126,7 @@ More info regarding system prompts can be found [here](https://medium.com/@adity
 
 ## Model Selection
 
-Edit app.py, line 252:
+Edit main1.py, line 252:
 
 model="qwen2.5:7b", # Change to any local LLM model you want.
 
@@ -188,7 +188,7 @@ A: PDF, DOCX (Word), PPTX (PowerPoint). TXT and Markdown coming soon.
 A: Accuracy depends on your document quality and model size. Qwen 2.5 7B is quite good; smaller models trade accuracy for speed.
 
 **Q: Can I use a different LLM?**  
-A: Yes! Any model in Ollama works. Change the model name in app.py and pull it first (ollama pull model_name).
+A: Yes! Any model in Ollama works. Change the model name in main1.py and pull it first (ollama pull model_name).
 
 **Q: Will this work on Windows/Mac/Linux?**  
 A: Yes, if you have Python 3.8+, Ollama, and ~2GB free disk space.
