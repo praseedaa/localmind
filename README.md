@@ -1,8 +1,13 @@
-**Privacy Focused Local LLM With Internet Access**
+# **Privacy Focused Local LLM With Internet Access**
 
-A **privacy focused** local LLM implementation, with **customizable models, vector embeddings,** and **API-free live web search.**
+## A **privacy focused** local LLM implementation, with **customizable models, vector embeddings,** and **API-free live web search.**
+<img width="944" height="435" alt="Screenshot 2026-06-08 153659" src="https://github.com/user-attachments/assets/8863ca41-1204-44be-85d6-1728c6bce572" />
 
-# Features
+<img width="674" height="259" alt="Screenshot 2026-06-08 150148" src="https://github.com/user-attachments/assets/06598c6a-e7fd-4a80-8d3c-eb8987b90c1c" />
+
+
+
+## Features
 
 - **Multi Format Support:** Supported document types include DOCX, PDF, and PPTX
 - **Fully Private:** Runs entirely locally, which means no cloud server or external API keys are required
@@ -13,8 +18,24 @@ A **privacy focused** local LLM implementation, with **customizable models, vect
 
 - **Persistent memory**: Document state persists across sessions
 - **Uploading a doc is optional**
+  
+## How it works
+The application combines:
+• Retrieved document context
+• Adaptive live web context
+• User query into a single prompt before generating a response.
+**This is how it does that**
+1. Retrieve relevant document chunks from ChromaDB
+2. Determine whether the user query is related to document content
+3. If related, enhance web searches using extracted document keywords
+4. Retrieve live web context from DuckDuckGo
+ <img width="733" height="380" alt="Screenshot 2026-06-08 150123" src="https://github.com/user-attachments/assets/45e2077f-f227-436b-ae92-c263a2af455a" />
+6. Combine document context and web context
+7. Generate a response using the local LLM
+  
 
-# Use Cases
+
+## Use Cases
 
 
 **Students**: Query lecture notes, textbooks, research papers at **no additional cost  
@@ -22,20 +43,20 @@ Researchers**: Ask questions about your own papers and datasets
 **Professionals**: Search internal documentation privately  
 **Developers**: Q&A over codebases and technical docs
 
-# Prerequisites
+## Prerequisites
 
 - Python 3.8 and later
 - Ollama installed and running
 - 4+ GB RAM (This was implemented on 8 GB RAM)
 - GPU - optional, recommended for Qwen 2.5 7B.
 
-# Installation
+## Installation
 
 - **Clone and install dependencies**
 
 git clone &lt;your_repo_URL&gt;
 
-cd custom_llm
+cd localmind
 
 pip install -r requirements.txt
 
@@ -55,7 +76,7 @@ pip install -r requirements.txt
 
 - Open your browser to <http://localhost:8501>
 
-# How to Use
+## How to Use
 
 - **Upload a document**
   - Click the file uploader and select a PDF, DOCX, or PPTX
@@ -71,7 +92,7 @@ pip install -r requirements.txt
   - Local LLM synthesizes a response using both contexts
   - Results appear with expandable context sections
 
-# Tech Stack Used
+## Tech Stack Used
 
 | **Component**                         | **Purpose**                    |
 | ------------------------------------- | ------------------------------ |
@@ -83,11 +104,11 @@ pip install -r requirements.txt
 | **httpx + BeautifulSoup4**            | DuckDuckGo web scraping        |
 | **Streamlit cache**                   | Session state management       |
 
-# Project Structure
+## Project Structure
 
 local-rag-assistant/
 
-├── app.py # Main Streamlit app
+├── main1.py # Main Streamlit app
 
 ├── requirements.txt # Python dependencies
 
@@ -95,7 +116,7 @@ local-rag-assistant/
 
 └── .gitignore # Git ignore rules
 
-# System Prompts
+## System Prompts
 
 AI hallucinations and LLM confusion are common issues. Instead of handling them at the output level, I focused on addressing their root causes.
 
@@ -103,13 +124,13 @@ To do this, I optimized the RAG pipeline and introduced a system prompt to guide
 
 More info regarding system prompts can be found [here](https://medium.com/@adityaa9971/system-prompts-explained-what-they-are-how-they-work-and-how-to-write-them-properly-d91e3f611046)
 
-# Model Selection
+## Model Selection
 
 Edit app.py, line 252:
 
 model="qwen2.5:7b", # Change to any local LLM model you want.
 
-# Web Search Timeout
+## Web Search Timeout
 
 It adds a **fixed timer** for web searches.
 
@@ -121,7 +142,7 @@ Edit the call_web_search() function, line 20:
 
 timeout=10, # Increase if DuckDuckGo searches time out
 
-# Troubleshooting
+## Troubleshooting
 
 **"Ollama error: connection refused"**
 
@@ -148,14 +169,14 @@ timeout=10, # Increase if DuckDuckGo searches time out
 - **Problem**: Running 7B model on CPU
 - **Fix**: Switch to qwen2.5:3b or enable GPU acceleration
 
-# How it's Private
+## How it's Private
 
 - **No cloud uploads**: All inference happens locally on your machine
 - **No API keys required** (except optional web search via DuckDuckGo)
 - **No user tracking**: This app collects zero analytics
 - **Secure document storage**: Embeddings stay in local ChromaDB only
 
-# FAQ
+## FAQ
 
 **Q: Can I use this without Ollama?**  
 A: No, you need Ollama for local inference. Alternatively, you could modify the code to use OpenAI API (costs money).
